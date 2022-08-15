@@ -1,0 +1,363 @@
+{
+	"variables": [],
+	"info": {
+		"name": "tech-exam",
+		"_postman_id": "6d353bdb-bdee-d192-773d-f74946074a5f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "transactions",
+			"description": "",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4000/api/v1/transaction?from=2022-08-15T11:28:10.404Z&to=2022-08-15T11:28:14.678Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2022-08-15T11:28:10.404Z",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "to",
+									"value": "2022-08-15T11:28:14.678Z",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get user transactions",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4000/api/v1/transaction/user/1?from=2022-08-15T11:28:10.404Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"transaction",
+								"user",
+								"1"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2022-08-15T11:28:10.404Z",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"url": "http://localhost:4000/api/v1/transaction",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTk2NzY5NTcsImV4cCI6MTY5MTIxMjk1NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJ1aWQiOiIxMjM0NSIsIlJvbGUiOiJQcm9qZWN0IEFkbWluaXN0cmF0b3IifQ.YjpcI1foyYRQXTuJg2dXaJ-SSb-nvJe4QkJzr8uTgK8",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"value\": 1000,\n\t\"AccountId\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "deposit",
+					"request": {
+						"url": "http://localhost:4000/api/v1/transaction",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTk2NzY5NTcsImV4cCI6MTY5MTIxMjk1NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJ1aWQiOiIxMjM0NSIsIlJvbGUiOiJQcm9qZWN0IEFkbWluaXN0cmF0b3IifQ.YjpcI1foyYRQXTuJg2dXaJ-SSb-nvJe4QkJzr8uTgK8",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"value\": 1000,\n\t\"AccountId\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "withdrawal",
+					"request": {
+						"url": "http://localhost:4000/api/v1/transaction",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTk2NzY5NTcsImV4cCI6MTY5MTIxMjk1NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJ1aWQiOiIxMjM0NSIsIlJvbGUiOiJQcm9qZWN0IEFkbWluaXN0cmF0b3IifQ.YjpcI1foyYRQXTuJg2dXaJ-SSb-nvJe4QkJzr8uTgK8",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"value\": -1000,\n\t\"AccountId\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"url": "http://localhost:4000/api/v1/transaction/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "person",
+			"description": "",
+			"item": [
+				{
+					"name": "create person",
+					"request": {
+						"url": "http://localhost:4000/api/v1/person",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTk2NzY5NTcsImV4cCI6MTY5MTIxMjk1NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJ1aWQiOiIxMjM0NSIsIlJvbGUiOiJQcm9qZWN0IEFkbWluaXN0cmF0b3IifQ.YjpcI1foyYRQXTuJg2dXaJ-SSb-nvJe4QkJzr8uTgK8",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Vahe Hayrapetyan\",\n\t\"document\": \"\",\n\t\"birthDate\": \"1993-01-03\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"request": {
+						"url": "http://localhost:4000/api/v1/person",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"url": "http://localhost:4000/api/v1/person/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Vahe Hayrapetyan new\",\n\t\"document\": \"pasport\",\n\t\"birthDate\": \"1993-01-06\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"url": "http://localhost:4000/api/v1/person/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"url": "http://localhost:4000/api/v1/person/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "account",
+			"description": "",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"url": "http://localhost:4000/api/v1/account",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"url": "http://localhost:4000/api/v1/account/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"balance\": 3000,\n\t\"delayWithDrawalLimit\": 100000,\n\t\"activeFlag\": true,\n\t\"type\": 1,\n\t\"PersonId\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "block",
+					"request": {
+						"url": "http://localhost:4000/api/v1/account/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"balance\": 3000,\n\t\"delayWithDrawalLimit\": 100000,\n\t\"activeFlag\": false,\n\t\"type\": 1,\n\t\"PersonId\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"url": "http://localhost:4000/api/v1/account",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTk2NzY5NTcsImV4cCI6MTY5MTIxMjk1NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJ1aWQiOiIxMjM0NSIsIlJvbGUiOiJQcm9qZWN0IEFkbWluaXN0cmF0b3IifQ.YjpcI1foyYRQXTuJg2dXaJ-SSb-nvJe4QkJzr8uTgK8",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"balance\": 1000,\n\t\"delayWithDrawalLimit\": 100000,\n\t\"activeFlag\": true,\n\t\"type\": 1,\n\t\"PersonId\": 1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"url": "http://localhost:4000/api/v1/account/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"url": "http://localhost:4000/api/v1/account/2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

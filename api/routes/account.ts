@@ -4,7 +4,7 @@ import * as controller from '../controllers/account'
 
 const ingredientsRouter = Router()
 
-ingredientsRouter.get(':/id', controller.get)
+ingredientsRouter.get('/:id', controller.get)
 ingredientsRouter.put('/:id', controller.update)
 ingredientsRouter.delete('/:id', controller.get)
 ingredientsRouter.post('/', controller.create);

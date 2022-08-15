@@ -1,7 +1,7 @@
 import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 import { Person } from '../models'
-import { PersonAttributes, PersonInput } from '../models/Person'
+import { PersonInput } from '../models/Person'
 
 const ajv = new Ajv();
 addFormats(ajv)
@@ -26,7 +26,7 @@ export const create = async (payload: PersonInput): Promise<Person> => {
     return Person.create(payload)
 }
 
-export const update = async (id: number, payload: Partial<PersonInput>): Promise<PersonAttributes>  => {
+export const update = async (id: number, payload: Partial<PersonInput>): Promise<Person>  => {
     const ingredient = await Person.findByPk(id)
 
     if (!ingredient) {
@@ -36,7 +36,7 @@ export const update = async (id: number, payload: Partial<PersonInput>): Promise
     return await ingredient.update(payload)
 }
 
-export const getById = async (id: number): Promise<PersonAttributes | null> => {
+export const getById = async (id: number): Promise<Person | null> => {
     return await Person.findByPk(id);
 }
 
@@ -45,6 +45,6 @@ export const deleteById = async (id: number): Promise<boolean> => {
     return !!deletedCount
 }
 
-export const getAll = (): Promise<PersonAttributes[]> => {
+export const getAll = (): Promise<Person[]> => {
     return Person.findAll();
 }

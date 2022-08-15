@@ -11,8 +11,8 @@ export const HTTP_ERRORS = {
         message: 'sysError_validation_failed',
         severity: SeverityTypes.Error
     },
-    USER_NOT_FOUND: {
-        message: 'sysError_user_not_found',
+    RESOURCE_NOT_FOUND: {
+        message: 'sysError_resource_not_found',
         severity: SeverityTypes.Error
     },
     INTERNAL_SERVER_ERROR: {

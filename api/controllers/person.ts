@@ -11,51 +11,49 @@ export const get = async (req: Request, res: Response) => {
     if(result) {
         return res.status(200).json(result);
     }
-    return res.status(404);
+    return errorResponse(res, [HTTP_ERRORS.RESOURCE_NOT_FOUND], 404);
 };
 
-export const deleteAccount = async (req: Request, res: Response) => {
+export const deletePerson = async (req: Request, res: Response) => {
     const id = Number(req.params.id);
     try {
         const result = await personService.deleteById(id);
         if(result) {
-            return res.status(200).json(result);
+            return res.status(200).json({ success: result });
         }
-        return errorResponse(res, [HTTP_ERRORS.USER_NOT_FOUND], 404);
+        return errorResponse(res, [HTTP_ERRORS.RESOURCE_NOT_FOUND], 404);
     } catch(e) {
         return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
     }
 };
 
-
 export const update = async (req: Request, res: Response) => {
     const id = Number(req.params.id);
-    const accountData = req.body;
-    const isValid = personService.validate(accountData);
+    const data = req.body;
+    const isValid = personService.validate(data);
     if(!isValid) {
         return errorResponse(res, [HTTP_ERRORS.VALIDATION_FAILED], 400);
     }
     try {
-        const result = await personService.update(id, accountData);
+        const result = await personService.update(id, data);
         if(result) {
             return res.status(200).json(result);
         }
-        return errorResponse(res, [HTTP_ERRORS.USER_NOT_FOUND], 404);
+        return errorResponse(res, [HTTP_ERRORS.RESOURCE_NOT_FOUND], 404);
     } catch(e) {
         return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
     }
 };
 
-
 export const create = async (req: Request, res: Response) => {
-    const accountData = req.body;
-    const isValid = personService.validate(accountData);
+    const data = req.body;
+    const isValid = personService.validate(data);
     if(!isValid) {
         return errorResponse(res, [HTTP_ERRORS.VALIDATION_FAILED], 400);
     }
     const transaction = await sequelize.transaction();
     try {
-        const personCreationResult = await personService.create(accountData);
+        const personCreationResult = await personService.create(data);
         if(!personCreationResult) {
             transaction.rollback();
             return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);

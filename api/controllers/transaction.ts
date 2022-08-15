@@ -11,7 +11,7 @@ export const get = async (req: Request, res: Response) => {
     if(result) {
         return res.status(200).json(result);
     }
-    return res.status(404);
+    return errorResponse(res, [HTTP_ERRORS.RESOURCE_NOT_FOUND], 404);
 };
 
 export const create = async (req: Request, res: Response) => {
@@ -26,9 +26,9 @@ export const create = async (req: Request, res: Response) => {
     const transaction = await sequelize.transaction();
     try {
         const account = await accountService.getById(data.AccountId);
-        if(!account) {
+        if(!account || !account?.getDataValue('activeFlag')) {
             await transaction.rollback();
-            return errorResponse(res, [HTTP_ERRORS.USER_NOT_FOUND], 404);
+            return errorResponse(res, [HTTP_ERRORS.RESOURCE_NOT_FOUND], 404);
         }
         const result = await transactionService.create(data);
         if(!result) {
@@ -36,7 +36,7 @@ export const create = async (req: Request, res: Response) => {
             return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
         }
         account?.setDataValue('balance', account?.getDataValue('balance') + data.value);
-        account.save()
+        account?.save()
         await transaction.commit();
         return res.status(200).json(result);
     } catch(e) {

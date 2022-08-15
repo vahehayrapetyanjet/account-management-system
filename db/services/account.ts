@@ -1,6 +1,6 @@
 import Ajv from 'ajv'
 import { Account } from '../models'
-import { AccountAttributes, AccountInput, AccountTypes } from '../models/Account'
+import { AccountInput, AccountTypes } from '../models/Account'
 
 const ajv = new Ajv()
 const schema = {
@@ -21,11 +21,11 @@ const validateSchema = ajv.compile(schema)
 export const validate = (payload: AccountInput) => {
     return validateSchema(payload);
 }
-export const create = async (payload: AccountInput): Promise<AccountAttributes> => {
+export const create = async (payload: AccountInput): Promise<Account> => {
     return Account.create(payload)
 }
 
-export const update = async (id: number, payload: Partial<AccountInput>): Promise<AccountAttributes>  => {
+export const update = async (id: number, payload: Partial<AccountInput>): Promise<Account>  => {
     const ingredient = await Account.findByPk(id)
 
     if (!ingredient) {
@@ -44,6 +44,6 @@ export const deleteById = async (id: number): Promise<boolean> => {
     return !!deletedCount
 }
 
-export const getAll = (): Promise<AccountAttributes[]> => {
+export const getAll = (): Promise<Account[]> => {
     return Account.findAll();
 }
