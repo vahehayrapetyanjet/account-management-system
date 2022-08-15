@@ -1,0 +1,65 @@
+version: '3.5'
+
+services:
+  api:
+    container_name: http_api
+    image: vahe/http-api
+    build:
+      context: .
+    ports:
+      - "4000:4000"
+    networks:
+      - tech-exam
+    environment:
+      PORT: 4000
+      NODE_ENV: production
+      TOKEN_SECRET: super secret
+      TOKEN_TTL: 1800s
+      DB_NAME: ${POSTGRES_DB:-tech-exam}
+      DB_USER: ${POSTGRES_USER:-postgres}
+      DB_HOST: postgres
+      DB_DRIVER: postgres
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    command: 'npx ts-node server.ts'
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-tech-exam}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - tech-exam
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - tech-exam
+    restart: unless-stopped
+
+networks:
+  tech-exam:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
