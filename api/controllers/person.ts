@@ -70,7 +70,7 @@ export const create = async (req: Request, res: Response) => {
             return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
         }
         await transaction.commit();
-        return res.status(200).json(personCreationResult);
+        return res.status(201).json(personCreationResult);
     } catch(e) {
         transaction.rollback();
         return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);

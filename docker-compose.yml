@@ -3,7 +3,7 @@ version: '3.5'
 services:
   api:
     container_name: http_api
-    image: vahe/http-api
+    # image: vahe/http-api
     build:
       context: .
     ports:

@@ -1,4 +1,4 @@
-import express, { Request, Response} from  'express'
+import express from  'express'
 import bodyParser from  'body-parser'
 
 // Custom modules
@@ -21,5 +21,5 @@ app.use(bodyParser.json())
 app.use('/api/v1', routes)
 
 app.listen(env.PORT, () => {
-    console.log(`Example app listening on port ${env.PORT} node env ${env.NODE_ENV}`)
+    console.log(`Tech exam listening on port ${env.PORT} node env ${env.NODE_ENV}`)
 })

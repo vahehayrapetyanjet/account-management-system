@@ -6,6 +6,6 @@ interface httpMessage  {
     message: string
 }
 
-export const errorResponse = (res: Response, body: httpMessage[], status: number = 500) => {
+export const errorResponse = (res: Response, body: httpMessage[], status = 500) => {
     res.status(status).json(body)
 };

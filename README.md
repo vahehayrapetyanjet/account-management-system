@@ -10,12 +10,13 @@ Tech Exam
 ## steps to run dev env
 
 1. copy .env.example .env
-1.1. change .env file for prod use
 2. npm ci
 3. docker-compose up -d postgres
 4. npm run dev
 
 ## steps to run demo env
 1. docker-compose up -d
+
+### Note: change .env file for prod use
 
 #### Please find postman collections in the folder `postman`

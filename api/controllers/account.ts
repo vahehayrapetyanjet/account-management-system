@@ -56,7 +56,7 @@ export const create = async (req: Request, res: Response) => {
         if(!result) {
             return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
         }
-        return res.status(200).json(result);
+        return res.status(201).json(result);
     } catch(e) {
         return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
     }

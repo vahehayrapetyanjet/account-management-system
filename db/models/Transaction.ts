@@ -1,4 +1,4 @@
-import { DataTypes, Model, Optional } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import Account from './Account';
 import sequelizeConnection from '../config'
 

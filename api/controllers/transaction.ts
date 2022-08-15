@@ -38,7 +38,7 @@ export const create = async (req: Request, res: Response) => {
         account?.setDataValue('balance', account?.getDataValue('balance') + data.value);
         account?.save()
         await transaction.commit();
-        return res.status(200).json(result);
+        return res.status(201).json(result);
     } catch(e) {
         await transaction.rollback();
         return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);

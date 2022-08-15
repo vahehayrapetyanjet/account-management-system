@@ -1,4 +1,4 @@
-import { DataTypes, Model,  Optional } from 'sequelize'
+import { DataTypes, Model } from 'sequelize'
 import sequelizeConnection from '../config'
 
 export interface PersonAttributes {

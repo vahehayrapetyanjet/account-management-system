@@ -11,6 +11,6 @@ const dbPassword = env.DB_PASSWORD
 const sequelizeConnection = new Sequelize(dbName, dbUser, dbPassword, {
   host: dbHost,
   dialect: dbDriver
-})
+});
 
 export default sequelizeConnection

@@ -30,6 +30,7 @@
   "exclude": [],
   "files": [
       "./types/express/index.d.ts",
-      "./types/custom.ts"
+      "./types/custom.ts",
+      "./server.ts"
   ]
 }
