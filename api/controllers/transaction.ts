@@ -1,5 +1,7 @@
 import {  Request, Response} from 'express'
+import sequelize from  '../../db/config'
 import * as transactionService from '../../db/services/transaction'
+import * as accountService from '../../db/services/account'
 import { errorResponse } from '../../utils/http'
 import { HTTP_ERRORS } from '../../config/constants';
 
@@ -12,52 +14,33 @@ export const get = async (req: Request, res: Response) => {
     return res.status(404);
 };
 
-export const deleteAccount = async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
-    try {
-        const result = await transactionService.deleteById(id);
-        if(result) {
-            return res.status(200).json(result);
-        }
-        return errorResponse(res, [HTTP_ERRORS.USER_NOT_FOUND], 404);
-    } catch(e) {
-        return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
-    }
-};
-
-
-export const update = async (req: Request, res: Response) => {
-    const id = Number(req.params.id);
-    const accountData = req.body;
-    const isValid = transactionService.validate(accountData);
-    if(!isValid) {
-        return errorResponse(res, [HTTP_ERRORS.VALIDATION_FAILED], 400);
-    }
-    try {
-        const result = await transactionService.update(id, accountData);
-        if(result) {
-            return res.status(200).json(result);
-        }
-        return errorResponse(res, [HTTP_ERRORS.USER_NOT_FOUND], 404);
-    } catch(e) {
-        return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
-    }
-};
-
-
 export const create = async (req: Request, res: Response) => {
-    const accountData = req.body;
-    const isValid = transactionService.validate(accountData);
+    const data = {
+        ...req.body,
+        transactionDate: new Date().toISOString()
+    };
+    const isValid = transactionService.validate(data);
     if(!isValid) {
         return errorResponse(res, [HTTP_ERRORS.VALIDATION_FAILED], 400);
     }
+    const transaction = await sequelize.transaction();
     try {
-        const result = await transactionService.create(accountData);
+        const account = await accountService.getById(data.AccountId);
+        if(!account) {
+            await transaction.rollback();
+            return errorResponse(res, [HTTP_ERRORS.USER_NOT_FOUND], 404);
+        }
+        const result = await transactionService.create(data);
         if(!result) {
+            await transaction.rollback();
             return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
         }
+        account?.setDataValue('balance', account?.getDataValue('balance') + data.value);
+        account.save()
+        await transaction.commit();
         return res.status(200).json(result);
     } catch(e) {
+        await transaction.rollback();
         return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
     }
 };

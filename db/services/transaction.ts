@@ -11,9 +11,10 @@ const schema = {
   type: 'object',
   properties: {
     value: { type: 'number' },
+    AccountId: {type: 'number'},
     transactionDate:  { type: 'string', format: 'date-time' },
   },
-  required: ['value', 'transactionDate'],
+  required: ['value', 'transactionDate', 'AccountId'],
   additionalProperties: false
 }
 export interface Query {

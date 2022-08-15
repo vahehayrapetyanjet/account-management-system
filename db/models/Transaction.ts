@@ -12,8 +12,9 @@ export interface TransactionAttributes {
 }
 
 export interface TransactionInput {
-    value?: number;
-    transactionDate?: Date;
+    value: number;
+    AccountId: number
+    transactionDate: Date;
 }
 
 class Transaction extends Model<TransactionAttributes, TransactionInput> implements TransactionAttributes {

@@ -35,7 +35,7 @@ export const update = async (id: number, payload: Partial<AccountInput>): Promis
     return await ingredient.update(payload)
 }
 
-export const getById = async (id: number): Promise<AccountAttributes | null> => {
+export const getById = async (id: number): Promise<Account | null> => {
     return await Account.findByPk(id);
 }
 
