@@ -1,5 +1,6 @@
 import {  Request, Response} from 'express'
 import sequelize from  '../../db/config'
+import currency from 'currency.js';
 import * as transactionService from '../../db/services/transaction'
 import * as accountService from '../../db/services/account'
 import { errorResponse } from '../../utils/http'
@@ -30,12 +31,15 @@ export const create = async (req: Request, res: Response) => {
             await transaction.rollback();
             return errorResponse(res, [HTTP_ERRORS.RESOURCE_NOT_FOUND], 404);
         }
+        const transactionAmount = currency(data.value as number )
+        data.value = transactionAmount.intValue;
         const result = await transactionService.create(data);
         if(!result) {
             await transaction.rollback();
             return errorResponse(res, [HTTP_ERRORS.INTERNAL_SERVER_ERROR], 500);
         }
-        account?.setDataValue('balance', account?.getDataValue('balance') + data.value);
+        const balance = currency(account?.getDataValue('balance') as number, { fromCents: true}).add(transactionAmount).intValue;
+        account?.setDataValue('balance', balance);
         account?.save()
         await transaction.commit();
         return res.status(201).json(result);

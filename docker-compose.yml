@@ -20,9 +20,9 @@ services:
       DB_HOST: postgres
       DB_DRIVER: postgres
       DB_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-    command: 'npx ts-node server.ts'
     depends_on:
       - postgres
+    restart: unless-stopped
 
   postgres:
     container_name: postgres_container

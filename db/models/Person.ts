@@ -32,7 +32,7 @@ class Person extends Model<PersonAttributes, PersonInput> implements PersonAttri
 
 Person.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },

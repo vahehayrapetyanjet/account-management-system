@@ -1,6 +1,8 @@
 
 import { Transaction, Person, Account} from './models'
-const isDev = process.env.NODE_ENV === 'development'
+import { env  } from '../config/env'
+
+const isDev = env.NODE_ENV === 'development'
 
 const dbInit = async () => {
     await Person.sync({ alter: isDev })

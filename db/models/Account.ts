@@ -40,19 +40,19 @@ class Account extends Model<AccountAttributes, AccountInput> implements AccountA
 
 Account.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
     type: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     balance: {
-        type: DataTypes.INTEGER.UNSIGNED
+        type: DataTypes.INTEGER
     },
     delayWithDrawalLimit: {
-        type: DataTypes.INTEGER.UNSIGNED
+        type: DataTypes.INTEGER
     },
     activeFlag: {
         type: DataTypes.BOOLEAN,

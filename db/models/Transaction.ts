@@ -30,12 +30,12 @@ class Transaction extends Model<TransactionAttributes, TransactionInput> impleme
 
 Transaction.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
     value: {
-        type: DataTypes.INTEGER.UNSIGNED
+        type: DataTypes.INTEGER
     },
     transactionDate: {
         type: DataTypes.DATE
